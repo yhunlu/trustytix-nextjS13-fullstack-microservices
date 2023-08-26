@@ -2,7 +2,7 @@ apiVersion: skaffold/v4beta6
 kind: Config
 build:
   artifacts:
-    - image: gcr.io/trustytix/auth
+    - image: us.gcr.io/trustytix/auth
       context: auth
       sync:
         manual:
