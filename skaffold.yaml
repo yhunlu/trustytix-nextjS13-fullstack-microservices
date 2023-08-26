@@ -2,7 +2,7 @@ apiVersion: skaffold/v4beta6
 kind: Config
 build:
   artifacts:
-    - image: yhunlu/auth
+    - image: gcr.io/trustytix/auth
       context: auth
       sync:
         manual:
@@ -10,8 +10,10 @@ build:
             src: 'src/**/*.ts'
       docker:
         dockerfile: Dockerfile
-  local:
-    push: false
+  # local:
+  #   push: false
+  googleCloudBuild:
+    projectId: trustytix
 manifests:
   rawYaml:
     - ./infra/k8s/*
