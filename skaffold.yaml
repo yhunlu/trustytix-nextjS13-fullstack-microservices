@@ -14,6 +14,7 @@ build:
   #   push: false
   googleCloudBuild:
     projectId: trustytix
+    region: europe-west1
 manifests:
   rawYaml:
     - ./infra/k8s/*
