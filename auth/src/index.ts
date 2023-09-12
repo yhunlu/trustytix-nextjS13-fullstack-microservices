@@ -10,9 +10,17 @@ import {
 import { errorHandler } from './middlewares';
 import { NotFoundError } from './errors';
 import mongoose from 'mongoose';
+import cookieSession from 'cookie-session';
 
 const app = express();
+app.set('trust proxy', true);
 app.use(json());
+app.use(
+  cookieSession({
+    signed: false,
+    secure: true,
+  })
+);
 
 app.use(currentUserRouter);
 app.use(signupRouter);
