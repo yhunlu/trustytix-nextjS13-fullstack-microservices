@@ -2,14 +2,7 @@ import request from 'supertest';
 import { app } from '../../app';
 
 it('response with details about the current user', async () => {
-  const signupResponse = await request(app)
-    .post('/api/users/signup')
-    .send({
-      email: 'test@test.com',
-      password: 'password',
-    })
-    .expect(201);
-  const cookie = signupResponse.get('Set-Cookie');
+  const cookie = await global.getCookie();
 
   const response = await request(app)
     .get('/api/users/currentuser')
@@ -18,4 +11,8 @@ it('response with details about the current user', async () => {
     .expect(200);
 
   expect(response.body.currentUser.email).toEqual('test@test.com');
+});
+
+it('response with null if not authenticated', async () => {
+  await request(app).get('/api/users/currentuser').send().expect(401);
 });
