@@ -10,6 +10,14 @@ build:
             src: 'src/**/*.ts'
       docker:
         dockerfile: Dockerfile
+    - image: us.gcr.io/trustytix/client
+      context: client
+      sync:
+        manual:
+          - dest: .
+            src: '**/*.js'
+      docker:
+        dockerfile: Dockerfile        
   # local:
   #   push: false
   googleCloudBuild:
