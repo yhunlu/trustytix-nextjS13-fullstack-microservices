@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import axios from 'axios';
 
 export default () => {
   const [email, setEmail] = useState('');
@@ -9,7 +10,16 @@ export default () => {
   const onSubmit = async (event) => {
     event.preventDefault();
 
-    console.log(email, password);
+    try {
+      const response = await axios.post('/api/users/signup', {
+        email,
+        password,
+      });
+
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
